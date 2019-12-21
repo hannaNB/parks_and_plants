@@ -1,0 +1,44 @@
+<div class="home-banner">
+  <%#= image_tag ("banner.jpg")   %>
+  <h1 class="animation slideDown bold-txt">Let's make awsome garden ! Find your favorite garden among ours or make your own .. </h1>
+</div>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-12">
+      <h1>All our gardens</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+        <p>All <%= Garden.count %> gardens.</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @gardens.each do |garden| %>
+      <div class="col-4">
+        <div class="garden-card">
+          <div class="garden-card-image" style="background-image: url('<%= garden.banner_url %>')"></div>
+          <div class="garden-card-content">
+            <div class="garden-card-title">
+              <h4><%= garden.name %></h4>
+            </div>
+
+          </div>
+          <div class="garden-card-actions">
+            <%= link_to 'More info', garden_path(garden) %>
+            <%= link_to 'Edit', edit_garden_path(garden), class: 'ml-3 text-warning' %>
+            <%= link_to "Remove", garden_path(garden),
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: 'ml-3 text-danger'
+            %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

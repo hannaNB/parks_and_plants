@@ -1,0 +1,29 @@
+<%= simple_form_for(garden) do |f| %>
+  <% if garden.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(garden.errors.count, "error") %> prohibited this garden from being saved:</h2>
+
+      <ul>
+        <% garden.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :banner_url%>
+    <%= f.text_field :banner_url, class: 'form-control' %>
+  </div>
+<!--   <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, size: "50" %>
+  </div> -->
+  <div class="mt-3">
+    <%= f.submit class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', gardens_path, class: 'btn btn-danger ml-2' %>
+  </div>
+<% end %>

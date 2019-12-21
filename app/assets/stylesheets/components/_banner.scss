@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+.home-banner {
+    background-image: asset-url('banner.jpg');
+    background-size: cover;
+    height: 100vh;
+    color: #eee;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+.bold-txt {
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847, 0 0 2px #006847;
+}
