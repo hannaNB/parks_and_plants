@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_201003) do
+ActiveRecord::Schema.define(version: 2019_12_22_113005) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "flourishes", force: :cascade do |t|
+    t.text "description"
+    t.bigint "plant_id", null: false
+    t.bigint "garden_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["garden_id"], name: "index_flourishes_on_garden_id"
+    t.index ["plant_id"], name: "index_flourishes_on_plant_id"
+  end
 
   create_table "gardens", force: :cascade do |t|
     t.string "name"
@@ -19,4 +32,15 @@ ActiveRecord::Schema.define(version: 2019_12_21_201003) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "plants", force: :cascade do |t|
+    t.string "name"
+    t.string "plant_url"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "specie"
+  end
+
+  add_foreign_key "flourishes", "gardens"
+  add_foreign_key "flourishes", "plants"
 end

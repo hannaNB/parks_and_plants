@@ -3,7 +3,7 @@
   <h1 class="animation slideDown bold-txt">Let's make awsome garden ! Find your favorite garden among ours or make your own .. </h1>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-4">
   <div class="row">
     <div class="col-12">
       <h1>All our gardens</h1>
@@ -28,17 +28,19 @@
 
           </div>
           <div class="garden-card-actions">
-            <%= link_to 'More info', garden_path(garden) %>
-            <%= link_to 'Edit', edit_garden_path(garden), class: 'ml-3 text-warning' %>
-            <%= link_to "Remove", garden_path(garden),
-                method: :delete,
-                data: { confirm: "Are you sure?" },
-                class: 'ml-3 text-danger'
-            %>
+            <%= link_to garden_path(garden) do %>
+            <i class="fas fa-info" style="color: #1EDD88"></i>
+            <% end %>&nbsp;
+            <%= link_to edit_garden_path(garden) do %>
+            <i class="fas fa-edit" style="color: #1EDD88"></i>
+            <% end %>&nbsp;
+            <%= link_to garden_path(garden), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="far fa-trash-alt" style="color: #1EDD88"></i>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
-
   </div>
+
 </div>

@@ -2,7 +2,13 @@ class GardensController < ApplicationController
   before_action :set_garden, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gardens = Garden.all
+    # search bar
+    if params[:query].present?
+      @query = params[:query].capitalize
+      @gardens = Garden.where("name LIKE ?", "%#{@query}%")
+    else
+      @gardens = Garden.all.order(:name)
+    end
   end
   def show
   end
@@ -12,7 +18,7 @@ class GardensController < ApplicationController
   def edit
   end
   def create
-    @garden = garden.new(garden_params)
+    @garden = Garden.new(garden_params)
 
     respond_to do |format|
       if @garden.save

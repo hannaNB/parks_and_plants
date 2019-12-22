@@ -1,15 +1,57 @@
-<div class="home-banner" style="background-image: url('<%= @garden.banner_url %>')">
+<div class="garden-banner" style="background-image: url('<%= @garden.banner_url %>')">
 </div>
 
+
 <div class="container margin-top-negative">
+
   <div class="row">
     <div class="col-8">
       <div class="garden-show-card-one">
         <h1><%= @garden.name %></h1>
-         <div class="garden-card-image" style="background-image: url('<%= @garden.banner_url %>')"></div>
+        <div class="garden-card-image"><%= image_tag @garden.banner_url, height: 180, width: 350, crop: :fill %></div>
       </div>
+    </div>
+
+    <div class="col-4">
       <div class="garden-show-card">
-        <h3>A bit more about this garden...</h3>
-        <p><%#= @garden.description %></p>
-        <h3>Ingredients</h3>
+          <h3>Manage Plants</h3>
+          <div class="#">
+            <div>
+              <span>You can add or delete plants to better fit your taste</span>
+            </div>
+            <br>
+            <div class="#">
+              <%= link_to "Add plant", new_garden_flourish_path(@garden), class: "btn btn-primary", id: "plant-add-button"%>
+              <%= link_to "Go Back", gardens_path, class: "btn btn-warning" %>
+            </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
 </div>
+
+
+  <div class="container mt-4">
+    <div class="row">
+      <% @garden.flourishes.each do |flourish| %>
+        <div class="col-4">
+          <div class="garden-card">
+            <div class="card-category" style="background-image: url('<%= flourish.plant.plant_url %>')">
+              <p> <%= flourish.plant.name %> <br>
+              <%= flourish.plant.specie %></p>
+            </div>
+            <div class="edit-plant">
+             <!--  <%= link_to edit_flourish_path(flourish) do %>
+                <i class="fas fa-edit" style="color: #1EDD88"></i>
+                <% end %>&nbsp; -->
+                <%= link_to flourish_path(flourish), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="far fa-trash-alt" style="color: #1EDD88"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>

@@ -1,0 +1,2 @@
+module FlourishsHelper
+end

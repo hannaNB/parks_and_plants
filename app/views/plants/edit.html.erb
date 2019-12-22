@@ -1,0 +1,39 @@
+<div class="container padded">
+  <h3 class="text-center">Add a plant</h1>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <%= simple_form_for(plants) do |form| %>
+        <% if @flourish.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@flourish.errors.count, "error") %> prohibited this flourish from being saved:</h2>
+
+            <ul>
+              <% @flourish.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <p><strong><%= form.label :description %></strong><br>
+          <%= form.text_field :description, size: 30 %></p>
+        </div>
+
+        <div class="form-group">
+          <%= form.input :plant, collection: Plant.all.order(:name), selected: "African violet" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :plant_url%>
+          <%= f.text_field :plant_url, class: 'form-control' %>
+        </div>
+
+        <div>
+          <%= form.submit 'Create', :class => 'btn btn-warning' %>
+        </div>
+      <% end %>
+      <br>
+    </div>
+  </div>
+</div>
